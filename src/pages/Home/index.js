@@ -1,13 +1,19 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
+import { Container, ImageBackground } from './styles';
+
 const Home = ({ navigation }) => {
   return (
-    <View>
+    <Container>
       <Text>Home</Text>
       <Button title="Cart" onPress={() => navigation.navigate('Cart')}></Button>
-    </View>
+    </Container>
   );
 };
 
 export default Home;
+
+Home.navigationOptions = ({ navigation }) => ({
+  title: 'Home',
+});
