@@ -13,6 +13,7 @@ export const Container = styled.View`
   flex-direction: row;
   padding: 20px;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Logo = styled.Image.attrs({ source: logo, reziseMode: 'cover' })``;

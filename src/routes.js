@@ -1,3 +1,4 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -12,18 +13,9 @@ const Routes = createAppContainer(
       Cart,
     },
     {
-      defaultNavigationOptions: {
-        header: Header,
-        // cardStyle: {
-        //   backgroundColor: '#000',
-        // },
-        // headerStyle: { backgroundColor: '#000' },
-        // headerLeft: Header,
-        // headerTintColor: '#FFF',
-        // headerBackTitleVisible: false, //it does not show the text "back"
-        // headerTitleAlign: 'center', //It is for ANDROID that puts the text in the left
-        // headerTitle: () => false,
-      },
+      defaultNavigationOptions: navigation => ({
+        header: <Header {...navigation} />,
+      }),
     }
   )
 );
