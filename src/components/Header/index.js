@@ -9,7 +9,6 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Header = ({ navigation }) => {
-  console.tron.log(navigation);
   return (
     <SafeArea>
       <Container>
