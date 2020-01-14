@@ -6,14 +6,17 @@ export const Container = styled.View`
 `;
 
 export const List = styled.FlatList`
-  padding: 10px 20px;
+  padding: 0px 20px 0px 20px;
+  margin-top: 20px;
 `;
 
 export const ProductContainer = styled.View`
+  flex: 1;
   background-color: #fff;
   padding: 20px;
-  margin-top: 15px;
+  margin-top: 10px;
   border-radius: 4px;
+  margin-bottom: 15px;
 `;
 
 export const ProductImage = styled.Image.attrs({ resizeMode: 'cover' })`
@@ -46,8 +49,10 @@ export const ButtonAddProduct = styled.TouchableOpacity`
 
 export const WrapperIconAddProduct = styled.View`
   flex-direction: row;
+  width: 75px;
   padding: 15px;
   align-items: center;
+  justify-content: space-evenly;
   background: rgba(0, 0, 0, 0.1);
 `;
 
