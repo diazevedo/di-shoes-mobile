@@ -11,7 +11,6 @@ import {
   ProductPrice,
   ButtonAddProduct,
   WrapperIconAddProduct,
-  // IconAddProduct,
   TextAmount,
   TextAdd,
 } from './styles';
@@ -29,7 +28,7 @@ class Home extends Component {
 
   render() {
     const { products } = this.state;
-    console.tron.log(products);
+
     return (
       <Container>
         <List
@@ -37,7 +36,7 @@ class Home extends Component {
           keyExtractor={product => String(product.id)}
           renderItem={({ item }) => (
             <ProductContainer>
-              <ProductImage source={{ uri: item.image }}></ProductImage>
+              <ProductImage source={{ uri: item.image }} />
               <ProductName>{item.title}</ProductName>
               <ProductPrice>{item.price}</ProductPrice>
 
@@ -58,7 +57,3 @@ class Home extends Component {
 }
 
 export default Home;
-
-Home.navigationOptions = ({ navigation }) => ({
-  title: 'Home',
-});

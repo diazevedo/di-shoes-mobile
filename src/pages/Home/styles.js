@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
+  flex: 1;
   background-color: #191920;
 `;
 
@@ -27,7 +28,6 @@ export const ProductName = styled.Text.attrs({ numberOfLines: 2 })`
 `;
 
 export const ProductPrice = styled.Text`
-  /* padding: 10px 20px; */
   padding: 0px 10px;
   color: #000;
   font-size: 36px;
@@ -37,7 +37,6 @@ export const ProductPrice = styled.Text`
 export const ButtonAddProduct = styled.TouchableOpacity`
   flex: 1;
   margin-top: 15px;
-  width: 340px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
