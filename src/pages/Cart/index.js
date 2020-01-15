@@ -1,6 +1,11 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import formatPrice from '../../util/format';
+import * as cartActions from '../../store/modules/cart/actions';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
   ProductContainer,
@@ -22,31 +27,19 @@ import {
   TotalPrice,
 } from './styles';
 
-const products = [
-  {
-    id: 1,
-    title:
-      'ADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENSADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENS',
-    price: 179.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-  },
-  {
-    id: 2,
-    title:
-      'ADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENSADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENS ADIDAS ORIGINALS NMD_R1 WOMENS',
-    price: 179.9,
-    image:
-      'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-  },
-];
-const Cart = ({ cart }) => {
+const Cart = ({ cart, total, updateAmountRequest, removeFromCart }) => {
+  const removeProduct = id => removeFromCart(id);
+
+  const increment = ({ id, amount }) => updateAmountRequest(id, amount + 1);
+
+  const decrement = ({ id, amount }) => updateAmountRequest(id, amount - 1);
+
   return (
     <Container>
       <ProductContainer>
         <List
-          data={products}
-          keyExtractor={product => String(product.id)}
+          data={cart}
+          keyExtractor={cart => String(cart.id)}
           renderItem={({ item }) => (
             <Product>
               <FirstLine>
@@ -57,16 +50,16 @@ const Cart = ({ cart }) => {
                 />
 
                 <ProductDetails>
-                  <ProductName>ADIDAS ORIGINALS NMD_R1 WOMENS </ProductName>
-                  <ProductPrice>R$100.00</ProductPrice>
+                  <ProductName>{item.title}</ProductName>
+                  <ProductPrice>{item.priceFormatted}</ProductPrice>
                 </ProductDetails>
-                <Button>
+                <Button onPress={() => removeProduct(item.id)}>
                   <Icon name="delete-forever" size={30} color="#7159c1" />
                 </Button>
               </FirstLine>
               <WrapperFinalDetails>
                 <WrapperAmount>
-                  <Button>
+                  <Button onPress={() => decrement(item)}>
                     <Icon
                       name="remove-circle-outline"
                       size={24}
@@ -74,19 +67,19 @@ const Cart = ({ cart }) => {
                     />
                   </Button>
 
-                  <AmountInput></AmountInput>
-                  <Button>
+                  <AmountInput>{item.amount}</AmountInput>
+                  <Button onPress={() => increment(item)}>
                     <Icon name="add-circle-outline" size={24} color="#7159c1" />
                   </Button>
                 </WrapperAmount>
 
-                <SubTotal>R$539.70</SubTotal>
+                <SubTotal>{item.subTotal}</SubTotal>
               </WrapperFinalDetails>
             </Product>
           )}
         />
         <Total>Total</Total>
-        <TotalPrice>R$7878</TotalPrice>
+        <TotalPrice>{total}</TotalPrice>
         <FinishOrderButton>
           <TextFinish>finish order</TextFinish>
         </FinishOrderButton>
@@ -95,4 +88,19 @@ const Cart = ({ cart }) => {
   );
 };
 
-export default Cart;
+const mapStateToProps = state => ({
+  cart: state.cart.map(product => ({
+    ...product,
+    subTotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return product.price * product.amount + total;
+    }, 0)
+  ),
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(cartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -9,7 +9,7 @@ import {
 } from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Header = ({ amount, navigation }) => {
+const Header = ({ cartSize, navigation }) => {
   return (
     <SafeArea>
       <Container>
@@ -19,11 +19,11 @@ const Header = ({ amount, navigation }) => {
 
         <BasketContainer onPress={() => navigation.navigate('Cart')}>
           <Icon name="shopping-basket" color="#FFF" size={24} />
-          <ItemAmount>{amount}</ItemAmount>
+          <ItemAmount>{cartSize}</ItemAmount>
         </BasketContainer>
       </Container>
     </SafeArea>
   );
 };
 
-export default connect(state => ({ amount: state.cart.length }))(Header);
+export default connect(state => ({ cartSize: state.cart.length }))(Header);

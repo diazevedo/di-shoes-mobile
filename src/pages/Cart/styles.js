@@ -98,8 +98,6 @@ export const FinishOrderButton = styled(RectButton)`
   margin: 10px;
   background-color: #7159c1;
   border-radius: 4px;
-  align-self: stretch;
-  height: 50px;
 `;
 
 export const TextFinish = styled.Text`
