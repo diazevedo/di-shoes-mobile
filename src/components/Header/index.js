@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   SafeArea,
   Container,
@@ -8,7 +9,7 @@ import {
 } from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Header = ({ navigation }) => {
+const Header = ({ amount, navigation }) => {
   return (
     <SafeArea>
       <Container>
@@ -18,11 +19,11 @@ const Header = ({ navigation }) => {
 
         <BasketContainer onPress={() => navigation.navigate('Cart')}>
           <Icon name="shopping-basket" color="#FFF" size={24} />
-          <ItemAmount>1</ItemAmount>
+          <ItemAmount>{amount}</ItemAmount>
         </BasketContainer>
       </Container>
     </SafeArea>
   );
 };
 
-export default Header;
+export default connect(state => ({ amount: state.cart.length }))(Header);
