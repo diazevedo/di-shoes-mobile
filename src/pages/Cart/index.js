@@ -8,7 +8,9 @@ import * as cartActions from '../../store/modules/cart/actions';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
+  EmptyContainer,
   ProductContainer,
+  TextEmpty,
   List,
   Product,
   FirstLine,
@@ -29,61 +31,71 @@ import {
 
 const Cart = ({ cart, total, updateAmountRequest, removeFromCart }) => {
   const removeProduct = id => removeFromCart(id);
-
   const increment = ({ id, amount }) => updateAmountRequest(id, amount + 1);
 
   const decrement = ({ id, amount }) => updateAmountRequest(id, amount - 1);
 
   return (
     <Container>
-      <ProductContainer>
-        <List
-          data={cart}
-          keyExtractor={cart => String(cart.id)}
-          renderItem={({ item }) => (
-            <Product>
-              <FirstLine>
-                <ProductImage
-                  source={{
-                    uri: item.image,
-                  }}
-                />
+      {cart.length === 0 ? (
+        <EmptyContainer>
+          <Icon name="remove-shopping-cart" color="#979797" size={50}></Icon>
+          <TextEmpty>Your cart is empty</TextEmpty>
+        </EmptyContainer>
+      ) : (
+        <ProductContainer>
+          <List
+            data={cart}
+            keyExtractor={cart => String(cart.id)}
+            renderItem={({ item }) => (
+              <Product>
+                <FirstLine>
+                  <ProductImage
+                    source={{
+                      uri: item.image,
+                    }}
+                  />
 
-                <ProductDetails>
-                  <ProductName>{item.title}</ProductName>
-                  <ProductPrice>{item.priceFormatted}</ProductPrice>
-                </ProductDetails>
-                <Button onPress={() => removeProduct(item.id)}>
-                  <Icon name="delete-forever" size={30} color="#7159c1" />
-                </Button>
-              </FirstLine>
-              <WrapperFinalDetails>
-                <WrapperAmount>
-                  <Button onPress={() => decrement(item)}>
-                    <Icon
-                      name="remove-circle-outline"
-                      size={24}
-                      color="#7159c1"
-                    />
+                  <ProductDetails>
+                    <ProductName>{item.title}</ProductName>
+                    <ProductPrice>{item.priceFormatted}</ProductPrice>
+                  </ProductDetails>
+                  <Button onPress={() => removeProduct(item.id)}>
+                    <Icon name="delete-forever" size={30} color="#7159c1" />
                   </Button>
+                </FirstLine>
+                <WrapperFinalDetails>
+                  <WrapperAmount>
+                    <Button onPress={() => decrement(item)}>
+                      <Icon
+                        name="remove-circle-outline"
+                        size={24}
+                        color="#7159c1"
+                      />
+                    </Button>
 
-                  <AmountInput>{item.amount}</AmountInput>
-                  <Button onPress={() => increment(item)}>
-                    <Icon name="add-circle-outline" size={24} color="#7159c1" />
-                  </Button>
-                </WrapperAmount>
+                    <AmountInput>{item.amount}</AmountInput>
+                    <Button onPress={() => increment(item)}>
+                      <Icon
+                        name="add-circle-outline"
+                        size={24}
+                        color="#7159c1"
+                      />
+                    </Button>
+                  </WrapperAmount>
 
-                <SubTotal>{item.subTotal}</SubTotal>
-              </WrapperFinalDetails>
-            </Product>
-          )}
-        />
-        <Total>Total</Total>
-        <TotalPrice>{total}</TotalPrice>
-        <FinishOrderButton>
-          <TextFinish>finish order</TextFinish>
-        </FinishOrderButton>
-      </ProductContainer>
+                  <SubTotal>{item.subTotal}</SubTotal>
+                </WrapperFinalDetails>
+              </Product>
+            )}
+          />
+          <Total>Total</Total>
+          <TotalPrice>{total}</TotalPrice>
+          <FinishOrderButton>
+            <TextFinish>finish order</TextFinish>
+          </FinishOrderButton>
+        </ProductContainer>
+      )}
     </Container>
   );
 };

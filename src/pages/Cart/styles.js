@@ -6,6 +6,21 @@ export const Container = styled.View`
   background-color: #191920;
 `;
 
+export const EmptyContainer = styled.View`
+  border-radius: 4px;
+  margin: 20px;
+  padding: 20px 20px;
+  background-color: #fff;
+  align-items: center;
+`;
+
+export const TextEmpty = styled.Text`
+  padding-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+`;
+
 export const ProductContainer = styled.View`
   border-radius: 4px;
   margin: 20px;
@@ -15,7 +30,7 @@ export const ProductContainer = styled.View`
 export const List = styled.FlatList``;
 
 export const Product = styled.View`
-  padding: 20px 20px;
+  padding: 20px;
   margin-top: 10px;
 `;
 

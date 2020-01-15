@@ -1,3 +1,5 @@
+import { Alert } from 'react-native';
+
 import { call, select, put, all, takeLatest } from 'redux-saga/effects';
 import api from '../../../services/api';
 import formatPrice from '../../../util/format';
@@ -16,7 +18,7 @@ function* addToCart({ id }) {
   const amount = currentAmount + 1;
 
   if (amount > responseStock.data.amount) {
-    console.tron.log('Amount ordered out of stock');
+    Alert.alert('Amount out of stock');
     return;
   }
 
@@ -46,7 +48,7 @@ function* updateAmount({ id, amount }) {
   const stock = response.data.amount;
 
   if (amount > stock) {
-    console.tron.log('Amount out of stock');
+    Alert.alert('Amount out of stock');
     return;
   }
 
