@@ -74,7 +74,7 @@ const Cart = ({ cart, total, updateAmountRequest, removeFromCart }) => {
                       />
                     </Button>
 
-                    <AmountInput>{item.amount}</AmountInput>
+                    <AmountInput value={String(item.amount)}></AmountInput>
                     <Button onPress={() => increment(item)}>
                       <Icon
                         name="add-circle-outline"
