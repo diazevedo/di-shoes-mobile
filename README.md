@@ -16,6 +16,6 @@ The app of di-shoes
 2. Navigate to the folder `cd di-shoes-mobile`;
 3. Run `yarn` or `npm install`;
 4. Run `yarn server` or `npm server` - Our products are in server.js;
-   5.Run `react-native run-android` or `react-native run-ios`
+5. Run `react-native run-android` or `react-native run-ios`
 
 Feel free to make changes or suggest changes. Feedback is more than welcome. :smiley:
