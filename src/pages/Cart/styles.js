@@ -23,19 +23,23 @@ export const TextEmpty = styled.Text`
 
 export const ProductContainer = styled.View`
   border-radius: 4px;
-  margin: 20px;
+  margin: 20px 20px 40px 20px;
   background-color: #fff;
+  flex: 1;
 `;
 
-export const List = styled.FlatList``;
+export const List = styled.FlatList.attrs({})`
+  background-color: #fff;
+  border-radius: 4px;
+  flex: 1;
+`;
 
 export const Product = styled.View`
-  padding: 20px;
-  margin-top: 10px;
+  padding: 10px 20px 10px 20px;
+  margin-top: 0px;
 `;
 
 export const FirstLine = styled.View`
-  flex: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -80,6 +84,7 @@ export const AmountInput = styled.TextInput`
   background-color: #fff;
   margin: 0px 5px;
   border-radius: 4px;
+  color: #000;
 `;
 
 export const SubTotal = styled.Text`
@@ -91,7 +96,7 @@ export const SubTotal = styled.Text`
 export const Button = styled.TouchableOpacity``;
 
 export const Total = styled.Text`
-  padding-top: 1px;
+  padding-top: 10px;
   font-size: 18px;
   text-align: center;
   color: #979797;
@@ -110,7 +115,7 @@ export const TotalPrice = styled.Text`
 export const FinishOrderButton = styled(RectButton)`
   padding-top: 15px;
   padding-bottom: 15px;
-  margin: 10px;
+  margin: 0 20px 20px 20px;
   background-color: #7159c1;
   border-radius: 4px;
 `;

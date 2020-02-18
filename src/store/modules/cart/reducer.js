@@ -12,15 +12,18 @@ export default function cart(state = [], action) {
       return produce(state, draft => {
         const productIndex = draft.findIndex(p => p.id === action.id);
 
-        if (productIndex >= 0)
+        if (productIndex >= 0) {
           draft[productIndex].amount = Number(action.amount);
+        }
       });
 
     case '@cart/REMOVE':
       return produce(state, draft => {
-        console.tron.log(action);
         const productIndex = draft.findIndex(p => p.id === action.id);
-        if (productIndex >= 0) draft.splice(productIndex, 1);
+
+        if (productIndex >= 0) {
+          draft.splice(productIndex, 1);
+        }
       });
 
     default:

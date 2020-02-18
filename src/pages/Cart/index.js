@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -31,6 +32,7 @@ import {
 
 const Cart = ({ cart, total, updateAmountRequest, removeFromCart }) => {
   const removeProduct = id => removeFromCart(id);
+
   const increment = ({ id, amount }) => updateAmountRequest(id, amount + 1);
 
   const decrement = ({ id, amount }) => updateAmountRequest(id, amount - 1);
