@@ -1,4 +1,4 @@
-# Di-shoes-app
+# DiShoes
 
 DiShoes
 
