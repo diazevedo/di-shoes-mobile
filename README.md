@@ -1,7 +1,5 @@
 # DiShoes
 
-DiShoes
-
 <p>An aplication for IOS/Android developed with React-Native. </p>
 <table>
   <tr><td colspan=2><strong>iOS</strong></td></tr>
