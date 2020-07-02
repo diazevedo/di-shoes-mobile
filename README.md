@@ -1,8 +1,8 @@
 # Di-shoes-app
 
-The app of di-shoes
+DiShoes
 
-<p>An aplication for IOS/Android developed with React-Native. Just a shoes store to play with React Native </p>
+<p>An aplication for IOS/Android developed with React-Native. </p>
 <table>
   <tr><td colspan=2><strong>iOS</strong></td></tr>
   <tr>
